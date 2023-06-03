@@ -6,14 +6,10 @@
 // -------------------------------------
 #include "ESP_Configuration.h"
 
-
-#if DEBUG == 1
-
-
 // -------------------------------------
 // FUNCTION
 // -------------------------------------
-
+#if DEBUG == 1
 /* Casual print function
  * arg tag  : TAG from the function (ex: main)
  * arg text : text u want to print  (ex: abcd...)
@@ -36,20 +32,25 @@ void ESP_Debug_printString(const char * tag, String strg) {
 
 /* Init print function */
 void ESP_Debug_printInit() {
-  Serial.println("ESPPLant is an open-source project about an plant box monitored by an ESP32");
+  Serial.println("ESPlant is an open-source project about an plant box monitored by an ESP32");
   Serial.println("Author : Corentn Cuomo-Graff - Guillaume Frick");
   Serial.println("Date : 02 june 2023");
 }
 
-template <typename T>
-void ESP_Debug_printValue(const char* tag, T value) {
+template <typename Debug_T>
+void ESP_Debug_printValue(const char* tag, Debug_T value) {
   Serial.print(tag);
   Serial.println(value);
   Serial.println();
 }
 
+#else 
+void ESP_Debug_printString(const char * tag, String strg)   {}
+void ESP_Debug_printText(const char * tag, char * text)     {}
+void ESP_Debug_printInit()                                  {}
+template <typename Debug_T>
+void ESP_Debug_printValue(const char* tag, Debug_T value)   {}
 
 #endif // DEBUG == 1
-
 
 #endif // _DEBUG_HEADER_ 
